@@ -1,0 +1,19 @@
+#EditorConfig file
+
+root = true
+
+#unix-style newlines
+[*]
+end_of_line = lf
+insert_final_newline = true
+
+#default charset and indentation
+[*.{js,pug}]
+charset =  utf-8
+indent_style = space
+indent_size = 2
+
+[*.*]
+charset =  utf-8
+indent_style = space
+indent_size = 2

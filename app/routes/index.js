@@ -1,0 +1,30 @@
+const helpers = require("../helpers");
+
+module.exports = () => {
+  let routes = {
+    get: {
+      "/": (req, res, next) => {
+        res.render("login", { pageTitle: "My Login Page" });
+      },
+      "/rooms": (req, res, next) => {
+        res.render("rooms");
+      },
+      "/chat": (req, res, next) => {
+        res.render("chatroom");
+      },
+      "/getsession": (req, res, next) => {
+        res.send("My favourite color: " + req.session.favColor);
+      },
+      "/setsession": (req, res, next) => {
+        req.session.favColor = "Red";
+        res.send("session set");
+      }
+    },
+    post: {},
+    NA: (req, res, next) => {
+      res.status(404).sendFile(process.cwd() + "/views/404.html");
+    }
+  };
+
+  return helpers.route(routes);
+};
