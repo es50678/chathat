@@ -3,8 +3,8 @@
   "dbURI": "mongodb://admin:admin@ds113648.mlab.com:13648/chatcat-dev",
   "sessionSecret": "secret",
   "fb": {
-    "clientID": "ID",
-    "clientSecret": "SECRET",
+    "clientID": "1455741311204111",
+    "clientSecret": "0a01b78267a40b496fca8c605f8a1c2d",
     "callbackURL": "//localhost:3000/auth/facebook/callback",
     "profileFields": [
       "id",
