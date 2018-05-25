@@ -1,4 +1,5 @@
 const helpers = require("../helpers");
+const passport = require("passport");
 
 module.exports = () => {
   let routes = {
@@ -18,7 +19,12 @@ module.exports = () => {
       "/setsession": (req, res, next) => {
         req.session.favColor = "Red";
         res.send("session set");
-      }
+      },
+      "/auth/facebook": passport.authenticate("facebook"),
+      "/auth/facebook/callback": passport.authenticate("facebook", {
+        successRedirect: "/rooms",
+        failureRedirect: "/"
+      })
     },
     post: {},
     NA: (req, res, next) => {

@@ -20,6 +20,7 @@ module.exports = () => {
   });
 
   const authProcess = (accessToken, refreshToken, profile, done) => {
+    console.log("profile", profile);
     //  Find a user in local db using profile.id
     helpers.findOne(profile.id).then(result => {
       if (result) {

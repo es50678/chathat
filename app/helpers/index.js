@@ -38,10 +38,11 @@ let findOne = profileID => {
 
 //create a new user and returns that instance
 let createNewUser = profile => {
+  // console.log('profile', profile);
   let newChatuser = new db.userModel({
     profileId: profile.id,
     fullName: profile.displayName,
-    profilePic: profile.photos[0] || " "
+    profilePic: profile.photos[0].value || " "
   });
 
   return newChatuser.save();
