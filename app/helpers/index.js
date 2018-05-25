@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const _ = require("lodash");
 
+const db = require("../db");
+
 let _registerRoutes = (routes, method) => {
   _.forEach(routes, (value, key) => {
     if (
@@ -27,4 +29,26 @@ let route = routes => {
   return router;
 };
 
-module.exports.route = route;
+// Find a single user based on a key
+let findOne = profileID => {
+  return db.userModel.findOne({
+    profileId: profileID
+  });
+};
+
+//create a new user and returns that instance
+let createNewUser = profile => {
+  let newChatuser = new db.userModel({
+    profileId: profile.id,
+    fullName: profile.displayName,
+    profilePic: profile.photos[0] || " "
+  });
+
+  return newChatuser.save();
+};
+
+module.exports = {
+  route,
+  findOne,
+  createNewUser
+};

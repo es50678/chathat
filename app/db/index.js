@@ -11,6 +11,16 @@ Mongoose.connect(config.dbURI)
     console.log("error", e);
   });
 
+//define structure for storing user data
+const chatUser = new Mongoose.Schema({
+  profileId: String,
+  fullName: String,
+  profilePic: String
+});
+
+const userModel = Mongoose.model('chatUser', chatUser);
+
 module.exports = {
-  Mongoose
+  Mongoose,
+  userModel
 };
