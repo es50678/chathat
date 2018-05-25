@@ -1,0 +1,15 @@
+{
+  "host": "http://localhost:3000",
+  "dbURI": "mongodb://admin:admin@ds113648.mlab.com:13648/chatcat-dev",
+  "sessionSecret": "secret",
+  "fb": {
+    "clientID": "ID",
+    "clientSecret": "SECRET",
+    "callbackURL": "//localhost:3000/auth/facebook/callback",
+    "profileFields": [
+      "id",
+      "displayName",
+      "photos"
+    ]
+  }
+}
