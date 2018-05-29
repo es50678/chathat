@@ -18,7 +18,7 @@ const chatUser = new Mongoose.Schema({
   profilePic: String
 });
 
-const userModel = Mongoose.model('chatUser', chatUser);
+const userModel = Mongoose.model("chatUser", chatUser);
 
 module.exports = {
   Mongoose,

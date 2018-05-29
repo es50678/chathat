@@ -1,5 +1,6 @@
 const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
+const TwitterStrategy = require("passport-twitter").Strategy;
 
 const config = require("../config");
 const helpers = require("../helpers");
@@ -20,7 +21,7 @@ module.exports = () => {
   });
 
   const authProcess = (accessToken, refreshToken, profile, done) => {
-    console.log("profile", profile);
+    // console.log("profile", profile);
     //  Find a user in local db using profile.id
     helpers.findOne(profile.id).then(result => {
       if (result) {
@@ -36,4 +37,5 @@ module.exports = () => {
     });
   };
   passport.use(new FacebookStrategy(config.fb, authProcess));
+  passport.use(new TwitterStrategy(config.twitter, authProcess));
 };
