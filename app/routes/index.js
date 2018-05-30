@@ -7,14 +7,20 @@ module.exports = () => {
       "/": (req, res, next) => {
         res.render("login", { pageTitle: "My Login Page" });
       },
-      "/rooms": (req, res, next) => {
-        res.render("rooms", {
-          user: req.user
-        });
-      },
-      "/chat": (req, res, next) => {
-        res.render("chatroom");
-      },
+      "/rooms": [
+        helpers.isAuthenticated,
+        (req, res, next) => {
+          res.render("rooms", {
+            user: req.user
+          });
+        }
+      ],
+      "/chat": [
+        helpers.isAuthenticated,
+        (req, res, next) => {
+          res.render("chatroom", { user: req.user });
+        }
+      ],
       "/getsession": (req, res, next) => {
         res.send("My favourite color: " + req.session.favColor);
       },
@@ -31,7 +37,11 @@ module.exports = () => {
       "/auth/twitter/callback": passport.authenticate("twitter", {
         successRedirect: "/rooms",
         failureRedirect: "/"
-      })
+      }),
+      "/logout": (req, res, next) => {
+        req.logout();
+        res.redirect("/");
+      }
     },
     post: {},
     NA: (req, res, next) => {

@@ -48,8 +48,17 @@ let createNewUser = profile => {
   return newChatuser.save();
 };
 
+let isAuthenticated = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    res.redirect("/");
+  }
+};
+
 module.exports = {
   route,
   findOne,
-  createNewUser
+  createNewUser,
+  isAuthenticated
 };
