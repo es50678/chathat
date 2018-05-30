@@ -1,5 +1,7 @@
-const helpers = require("../helpers");
 const passport = require("passport");
+
+const helpers = require("../helpers");
+const config = require("../config");
 
 module.exports = () => {
   let routes = {
@@ -11,14 +13,15 @@ module.exports = () => {
         helpers.isAuthenticated,
         (req, res, next) => {
           res.render("rooms", {
-            user: req.user
+            user: req.user,
+            host: config.host
           });
         }
       ],
       "/chat": [
         helpers.isAuthenticated,
         (req, res, next) => {
-          res.render("chatroom", { user: req.user });
+          res.render("chatroom", { user: req.user, host: config.host });
         }
       ],
       "/getsession": (req, res, next) => {
