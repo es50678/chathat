@@ -1,7 +1,8 @@
+let newRoomInput = $("#controlsInput");
+
 let renderChatRooms = chatrooms => {
   let roomsListDiv = $("#roomsListUL");
   let listStr = "";
-  console.log(chatrooms);
   for (let cat of chatrooms) {
     console.log(cat);
     listStr += `<a href='/chat/${cat.roomID}'><li>${cat.room}</li></a>`;
@@ -9,6 +10,13 @@ let renderChatRooms = chatrooms => {
 
   roomsListDiv.html("").append(listStr);
 };
+
+$("#createBtn").on("click", () => {
+  if (newRoomInput.val() !== "") {
+    socket.emit("createNewRoom", newRoomInput.val());
+    newRoomInput.val("");
+  }
+});
 
 //get a list of chatrooms
 socket.emit("getChatrooms");

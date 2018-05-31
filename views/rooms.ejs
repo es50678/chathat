@@ -9,7 +9,6 @@
   <script>
     let socket = io('<%= host %>' + '/roomslist');
   </script>
-  <script src="/js/roomsListSocket.js"></script>
 </head>
 <body>
 	<div class="container">
@@ -22,8 +21,8 @@
 			<a href="/logout" id="logOutBtn">Logout</a>
 		</div>
 		<div class="controls">
-			<input type="text" name="roomName" placeholder="Create a new Chatroom">
-			<a href="#" id="createBtn">Create</a>
+			<input type="text" id="controlsInput" name="roomName" placeholder="Create a new Chatroom">
+			<button id="createBtn">Create</button>
 		</div>
 		<div class="roomsListDiv">
 			<ul class="roomsList" id="roomsListUL">
@@ -32,5 +31,7 @@
 			</ul>
 		</div>
 	</div>
+  <script src="/js/roomsListSocket.js"></script>
+
 </body>
 </html>

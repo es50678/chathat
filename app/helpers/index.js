@@ -56,9 +56,17 @@ let isAuthenticated = (req, res, next) => {
   }
 };
 
+//Find a chatroom by a given name
+let findRoomByName = (allRooms, roomName) => {
+  allRooms.findIndex((element, index, array) => {
+    console.log(element);
+  });
+};
+
 module.exports = {
   route,
   findOne,
   createNewUser,
-  isAuthenticated
+  isAuthenticated,
+  findRoomByName
 };
