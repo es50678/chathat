@@ -18,19 +18,23 @@ module.exports = () => {
           });
         }
       ],
-      "/chat": [
+      "/chat/:id": [
         helpers.isAuthenticated,
         (req, res, next) => {
+          //todo: find chatroom with the given id
+          //todo: render it if the id is found
+          let getRoom = helpers.findRoomById(
+            req.app.locals.chatRooms,
+            req.params.id
+          );
+
+          if (getRoom === undefined) {
+            return next();
+          }
+
           res.render("chatroom", { user: req.user, host: config.host });
         }
       ],
-      "/getsession": (req, res, next) => {
-        res.send("My favourite color: " + req.session.favColor);
-      },
-      "/setsession": (req, res, next) => {
-        req.session.favColor = "Red";
-        res.send("session set");
-      },
       "/auth/facebook": passport.authenticate("facebook"),
       "/auth/facebook/callback": passport.authenticate("facebook", {
         successRedirect: "/rooms",

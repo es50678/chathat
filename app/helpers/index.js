@@ -1,3 +1,5 @@
+const crypto = require("crypto");
+
 const router = require("express").Router();
 const _ = require("lodash");
 
@@ -58,8 +60,20 @@ let isAuthenticated = (req, res, next) => {
 
 //Find a chatroom by a given name
 let findRoomByName = (allRooms, roomName) => {
-  allRooms.findIndex((element, index, array) => {
-    console.log(element);
+  let findRoom = allRooms.findIndex((element, index) => {
+    return element.room === roomName;
+  });
+
+  return findRoom > -1;
+};
+
+let randomHex = () => {
+  return crypto.randomBytes(24).toString("hex");
+};
+
+let findRoomById = (allRooms, roomID) => {
+  return allRooms.find((element, index) => {
+    return element.roomID === roomID;
   });
 };
 
@@ -68,5 +82,7 @@ module.exports = {
   findOne,
   createNewUser,
   isAuthenticated,
-  findRoomByName
+  findRoomByName,
+  randomHex,
+  findRoomById
 };
