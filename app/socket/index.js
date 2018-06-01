@@ -20,4 +20,12 @@ module.exports = (io, app) => {
       }
     });
   });
+
+  io.of("/chatter").on("connection", socket => {
+    //join room
+    socket.on("join", data => {
+      let userList = helpers.addUserToRoom(allRooms, data, socket);
+      console.log("userList", userList);
+    });
+  });
 };
