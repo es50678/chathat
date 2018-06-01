@@ -31,8 +31,11 @@ module.exports = () => {
           if (getRoom === undefined) {
             return next();
           }
-
-          res.render("chatroom", { user: req.user, host: config.host });
+          res.render("chatroom", {
+            user: req.user,
+            host: config.host,
+            room: getRoom
+          });
         }
       ],
       "/auth/facebook": passport.authenticate("facebook"),
